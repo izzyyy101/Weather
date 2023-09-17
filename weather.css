@@ -45,7 +45,7 @@ li {
   margin-right: 10px;
 }
 
-.temperature {
+#temperature {
   color: rgb(33, 33, 33);
   font-size: 44px;
   font-weight: 300;
@@ -57,7 +57,13 @@ li {
   top: -34px;
 }
 
-.search-form {
+#search-form {
   margin-bottom: 20px;
 }
+
+footer {
+  text-align: center;
+}
+
+
 
