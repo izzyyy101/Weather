@@ -116,9 +116,51 @@ form.addEventListener("submit", handleSubmit);
 
 search("New York");
 
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", convertToCelsius);
+  // Function to convert Celsius to Fahrenheit
+  function celsiusToFahrenheit(celsius) {
+    return (celsius * 9/5) + 32;
+  }
+
+  // Function to convert Fahrenheit to Celsius
+  function fahrenheitToCelsius(fahrenheit) {
+    return (fahrenheit - 32) * 5/9;
+  }
+
+  // Function to update temperature when the links are clicked
+  function updateTemperatureUnit(unit) {
+    const temperatureElement = document.getElementById("temperature");
+    const fahrenheitLink = document.getElementById("fahrenheit-link");
+    const celsiusLink = document.getElementById("celsius-link");
+
+    // Get the current temperature value
+    let currentTemperature = parseFloat(temperatureElement.textContent);
+
+    if (unit === "°F") {
+      // Convert to Fahrenheit
+      currentTemperature = celsiusToFahrenheit(currentTemperature);
+      fahrenheitLink.classList.add("active");
+      celsiusLink.classList.remove("active");
+    } else {
+      // Convert to Celsius
+      currentTemperature = fahrenheitToCelsius(currentTemperature);
+      celsiusLink.classList.add("active");
+      fahrenheitLink.classList.remove("active");
+    }
+
+    // Update the temperature element with the new unit
+    temperatureElement.textContent = currentTemperature.toFixed(1) + unit;
+  }
+
+  // Add event listeners for the temperature links
+  const fahrenheitLink = document.getElementById("fahrenheit-link");
+  const celsiusLink = document.getElementById("celsius-link");
+
+  fahrenheitLink.addEventListener("click", function () {
+    updateTemperatureUnit("°F");
+  });
+
+  celsiusLink.addEventListener("click", function () {
+    updateTemperatureUnit("°C");
+  });
 
